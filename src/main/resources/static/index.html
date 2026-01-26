@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
+<div id="analyticsModal" class="modal hidden">
+    <div class="modal-content">
+        <h3>📊 Analytics</h3>
+        <p>Analytics dashboard is coming soon.</p>
+        <p>This feature will allow you to track clicks and link performance.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
 <body>
 
 <header class="navbar">
-    <div class="logo">Tiny<span>Go</span></div>
+    <div class="logo">
+        🚀 <span class="brand">TinyGo</span>
+    </div>
 </header>
 
 <main class="hero">
@@ -18,7 +28,7 @@
 
     <div class="shortener-box">
         <input type="text" id="urlInput" placeholder="Paste your long URL here">
-        <button onclick="shortenUrl()">Shorten</button>
+        <button type="button" onclick="shortenUrl()">Shorten</button>
     </div>
 
     <div id="result" class="result hidden"></div>
@@ -40,7 +50,10 @@
 </section>
 
 <footer class="footer">
-    <p>© 2026 TinyGo • Built with Spring Boot</p>
+    <p>
+        © 2026 TinyGo • Built with Spring Boot by
+        <a href="https://github.com/lakshaybamel" target="_blank">Lakshay Bamel</a>
+    </p>
 </footer>
 
 <script src="app.js"></script>

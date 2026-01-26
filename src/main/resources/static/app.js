@@ -15,15 +15,24 @@ function shortenUrl() {
     })
     .then(res => res.json())
     .then(data => {
+        const shortUrl = data.shortUrl;
+
         result.classList.remove("hidden");
         result.innerHTML = `
-            <p><strong>Short URL:</strong></p>
-            <a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>
-            <br><br>
-            <button onclick="copyLink('${data.shortUrl}')">Copy</button>
-            <a href="/api/analytics/${data.shortUrl.split('/').pop()}" target="_blank">
-                View Analytics
-            </a>
+            <div class="result-card">
+                <p class="label">Your short link</p>
+
+                <div class="short-link-box">
+                    <a href="${shortUrl}" target="_blank">${shortUrl}</a>
+                    <button class="copy-btn" onclick="copyLink('${shortUrl}')">
+                        Copy
+                    </button>
+                </div>
+
+                <button class="analytics-btn" onclick="showAnalyticsComingSoon()">
+                    View Analytics
+                </button>
+            </div>
         `;
     })
     .catch(() => {
@@ -35,3 +44,11 @@ function copyLink(link) {
     navigator.clipboard.writeText(link);
     alert("Copied to clipboard!");
 }
+function showAnalyticsComingSoon() {
+    document.getElementById("analyticsModal").classList.remove("hidden");
+}
+
+function closeModal() {
+    document.getElementById("analyticsModal").classList.add("hidden");
+}
+

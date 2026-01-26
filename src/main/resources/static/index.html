@@ -2,20 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Free URL Shortener</title>
+    <title>TinyGo | Free URL Shortener</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Free URL Shortener</h1>
-    <p>No signup. No payment. Just shorten URLs.</p>
+<header class="navbar">
+    <div class="logo">Tiny<span>Go</span></div>
+</header>
 
-    <input type="text" id="urlInput" placeholder="Enter long URL here">
-    <button onclick="shortenUrl()">Shorten</button>
+<main class="hero">
+    <h1>Shrink links. Share faster.</h1>
+    <p>Free URL shortener. No signup. No payment.</p>
 
-    <div id="result"></div>
-</div>
+    <div class="shortener-box">
+        <input type="text" id="urlInput" placeholder="Paste your long URL here">
+        <button onclick="shortenUrl()">Shorten</button>
+    </div>
+
+    <div id="result" class="result hidden"></div>
+</main>
+
+<section class="features">
+    <div class="feature">
+        <h3>⚡ Fast</h3>
+        <p>Instant short links with high performance.</p>
+    </div>
+    <div class="feature">
+        <h3>📊 Analytics</h3>
+        <p>Track clicks and link performance.</p>
+    </div>
+    <div class="feature">
+        <h3>🆓 Free</h3>
+        <p>No subscriptions. Always free.</p>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>© 2026 TinyGo • Built with Spring Boot</p>
+</footer>
 
 <script src="app.js"></script>
 </body>

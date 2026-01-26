@@ -1,29 +1,110 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
+    background: #F9FAFB;
+    color: #111827;
 }
 
-.container {
-    width: 400px;
-    margin: 100px auto;
+/* Navbar */
+.navbar {
+    padding: 16px 32px;
     background: white;
-    padding: 25px;
-    border-radius: 8px;
-    text-align: center;
+    border-bottom: 1px solid #E5E7EB;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #7C3AED;
+}
+
+.logo span {
+    color: #5B21B6;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
     margin-bottom: 10px;
 }
 
-button {
-    padding: 10px 15px;
+.hero p {
+    color: #6B7280;
+    margin-bottom: 30px;
+}
+
+/* Shortener */
+.shortener-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.shortener-box input {
+    flex: 1;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+}
+
+.shortener-box button {
+    background: #7C3AED;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
-#result {
-    margin-top: 15px;
-    word-break: break-all;
+.shortener-box button:hover {
+    background: #5B21B6;
+}
+
+/* Result */
+.result {
+    margin-top: 20px;
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Features */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.feature {
+    background: white;
+    padding: 20px;
+    width: 220px;
+    border-radius: 10px;
+    border: 1px solid #E5E7EB;
+    text-align: center;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #6B7280;
 }

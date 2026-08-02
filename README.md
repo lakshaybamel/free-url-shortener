@@ -16,6 +16,7 @@ This project was created as a learning-focused application to understand:
 ## ✨ Features
 
 - Shorten long URLs
+- Optional custom alias for short links
 - Redirect using short links
 - Basic click analytics
 - Clean and responsive UI

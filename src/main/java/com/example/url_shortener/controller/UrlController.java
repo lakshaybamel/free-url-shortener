@@ -31,7 +31,14 @@ public class UrlController {
             return ResponseEntity.badRequest().body("URL is required");
         }
 
-        UrlMapping mapping = urlService.shortenUrl(originalUrl);
+        String alias = request.get("alias");
+
+        UrlMapping mapping;
+        try {
+            mapping = urlService.shortenUrl(originalUrl, alias);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
 
         String shortUrl = "http://localhost:8080/u/" + mapping.getShortCode();
 

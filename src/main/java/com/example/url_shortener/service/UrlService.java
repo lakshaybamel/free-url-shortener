@@ -19,7 +19,19 @@ public class UrlService {
     /**
      * Create a short URL for a given original URL
      */
-    public UrlMapping shortenUrl(String originalUrl) {
+    public UrlMapping shortenUrl(String originalUrl, String customAlias) {
+
+        String alias = customAlias == null ? null : customAlias.trim();
+        if (alias != null && !alias.isEmpty()) {
+            if (urlRepository.existsByShortCode(alias)) {
+                throw new IllegalArgumentException("Alias already in use");
+            }
+
+            UrlMapping mapping = new UrlMapping();
+            mapping.setOriginalUrl(originalUrl);
+            mapping.setShortCode(alias);
+            return urlRepository.save(mapping);
+        }
 
         // 1. Check if URL already exists
         Optional<UrlMapping> existing =

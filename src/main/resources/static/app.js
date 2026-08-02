@@ -1,7 +1,9 @@
 function shortenUrl() {
     const input = document.getElementById("urlInput");
+    const aliasInput = document.getElementById("aliasInput");
     const result = document.getElementById("result");
     const longUrl = input.value.trim();
+    const alias = aliasInput.value.trim();
 
     if (!longUrl) {
         alert("Please enter a URL");
@@ -11,9 +13,15 @@ function shortenUrl() {
     fetch("/api/shorten", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: longUrl })
+        body: JSON.stringify({ url: longUrl, alias: alias })
     })
-    .then(res => res.json())
+    .then(async res => {
+        if (!res.ok) {
+            const errorMessage = await res.text();
+            throw new Error(errorMessage || "Something went wrong.");
+        }
+        return res.json();
+    })
     .then(data => {
         const shortUrl = data.shortUrl;
 
@@ -35,8 +43,9 @@ function shortenUrl() {
             </div>
         `;
     })
-    .catch(() => {
-        result.innerText = "Something went wrong.";
+    .catch((error) => {
+        result.classList.remove("hidden");
+        result.innerText = error.message || "Something went wrong.";
     });
 }
 
@@ -51,4 +60,3 @@ function showAnalyticsComingSoon() {
 function closeModal() {
     document.getElementById("analyticsModal").classList.add("hidden");
 }
-

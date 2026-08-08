@@ -1,6 +1,7 @@
 package com.example.url_shortener.service;
 
 import com.example.url_shortener.UrlMapping;
+import com.example.url_shortener.exception.AliasAlreadyExistsException;
 import com.example.url_shortener.repository.UrlRepository;
 import com.example.url_shortener.util.Base62Encoder;
 import org.springframework.stereotype.Service;
@@ -19,36 +20,64 @@ public class UrlService {
     /**
      * Create a short URL for a given original URL
      */
-    public UrlMapping shortenUrl(String originalUrl) {
+    public UrlMapping shortenUrl(String originalUrl, String alias) {
 
-        // 1. Check if URL already exists
-        Optional<UrlMapping> existing =
-                urlRepository.findByOriginalUrl(originalUrl);
+        // Custom alias provided
+        if (alias != null && !alias.isBlank()) {
 
-        if (existing.isPresent()) {
-            return existing.get();  // return old short URL
+            // Check if this exact URL + alias already exists
+            Optional<UrlMapping> existing =
+                    urlRepository.findByOriginalUrlAndAlias(originalUrl, alias);
+
+            if (existing.isPresent()) {
+                return existing.get();
+            }
+
+            // Check if alias is already used by another URL
+            if (urlRepository.existsByAlias(alias)) {
+                throw new AliasAlreadyExistsException("Alias already exists");
+            }
+
+            // Create new custom alias mapping
+            UrlMapping mapping = new UrlMapping();
+            mapping.setOriginalUrl(originalUrl);
+            mapping.setAlias(alias);
+            mapping.setShortCode(alias);
+
+            return urlRepository.save(mapping);
         }
 
-        // 2. Create new entry
+        // No custom alias provided
+        // Only look for an automatically generated Base62 link
+        Optional<UrlMapping> existing =
+                urlRepository.findByOriginalUrlAndAliasIsNull(originalUrl);
+
+        if (existing.isPresent()) {
+            return existing.get();
+        }
+
+        // Create new Base62 mapping
         UrlMapping mapping = new UrlMapping();
         mapping.setOriginalUrl(originalUrl);
 
+        // Save first to generate database ID
         UrlMapping saved = urlRepository.save(mapping);
 
-        // 3. Generate short code
+        // Generate Base62 short code
         String shortCode = Base62Encoder.encode(saved.getId());
+
         saved.setShortCode(shortCode);
 
         return urlRepository.save(saved);
     }
-
 
     /**
      * Fetch original URL using short code
      */
     public Optional<UrlMapping> getAndUpdateClickCount(String shortCode) {
 
-        Optional<UrlMapping> mappingOpt = urlRepository.findByShortCode(shortCode);
+        Optional<UrlMapping> mappingOpt =
+                urlRepository.findByShortCode(shortCode);
 
         mappingOpt.ifPresent(mapping -> {
             mapping.setClickCount(mapping.getClickCount() + 1);
@@ -58,8 +87,10 @@ public class UrlService {
         return mappingOpt;
     }
 
+    /**
+     * Get analytics for a short URL
+     */
     public Optional<UrlMapping> getAnalytics(String shortCode) {
         return urlRepository.findByShortCode(shortCode);
     }
-
 }

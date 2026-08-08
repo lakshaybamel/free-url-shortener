@@ -11,5 +11,11 @@ public interface UrlRepository extends JpaRepository<UrlMapping, Long> {
 
     Optional<UrlMapping> findByOriginalUrl(String originalUrl);
 
+    Optional<UrlMapping> findByOriginalUrlAndAliasIsNull(String originalUrl);
+
+    Optional<UrlMapping> findByOriginalUrlAndAlias(String originalUrl, String alias);
+
     boolean existsByShortCode(String shortCode);
+
+    boolean existsByAlias(String alias);
 }

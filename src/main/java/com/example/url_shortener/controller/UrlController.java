@@ -27,11 +27,13 @@ public class UrlController {
     public ResponseEntity<?> shortenUrl(@RequestBody Map<String, String> request) {
 
         String originalUrl = request.get("url");
+        String alias = request.get("alias");
+
         if (originalUrl == null || originalUrl.isBlank()) {
             return ResponseEntity.badRequest().body("URL is required");
         }
 
-        UrlMapping mapping = urlService.shortenUrl(originalUrl);
+        UrlMapping mapping = urlService.shortenUrl(originalUrl, alias);
 
         String shortUrl = "http://localhost:8080/u/" + mapping.getShortCode();
 
@@ -73,6 +75,4 @@ public class UrlController {
                 ))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-
 }

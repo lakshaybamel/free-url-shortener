@@ -17,6 +17,9 @@ public class UrlMapping {
     @Column(unique = true)
     private String shortCode;
 
+    @Column(unique = true)
+    private String alias;
+
     private Long clickCount = 0L;
 
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -32,6 +35,7 @@ public class UrlMapping {
     }
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -50,6 +54,14 @@ public class UrlMapping {
 
     public void setShortCode(String shortCode) {
         this.shortCode = shortCode;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public Long getClickCount() {

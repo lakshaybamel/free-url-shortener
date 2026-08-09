@@ -2,6 +2,7 @@ package com.example.url_shortener.controller;
 
 import com.example.url_shortener.UrlMapping;
 import com.example.url_shortener.service.UrlService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import java.util.Optional;
 public class UrlController {
 
     private final UrlService urlService;
+
+    @Value("${app.base-url}")
+    private String baseUrl;
 
     public UrlController(UrlService urlService) {
         this.urlService = urlService;
@@ -35,7 +39,7 @@ public class UrlController {
 
         UrlMapping mapping = urlService.shortenUrl(originalUrl, alias);
 
-        String shortUrl = "http://localhost:8080/u/" + mapping.getShortCode();
+        String shortUrl = baseUrl + "/u/" + mapping.getShortCode();
 
         return ResponseEntity.ok(Map.of("shortUrl", shortUrl));
     }

@@ -1,70 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>LiteURL | Free URL Shortener</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title >BiteU | Take a Bite Out of Long URLs</title>
+    <link rel="icon" type="image/png" href="/images/biteu-logo.png">
+    <meta name="description" content="BiteU turns long, messy URLs into short, shareable bite-sized links — with instant QR codes. No signup, no nonsense.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
-<div id="analyticsModal" class="modal hidden">
-    <div class="modal-content">
-        <h3>📊 Analytics</h3>
-        <p>Analytics dashboard is coming soon.</p>
-        <p>This feature will allow you to track clicks and link performance.</p>
-        <button onclick="closeModal()">Close</button>
-    </div>
-</div>
+
 <body>
 
+<!-- Navbar -->
 <header class="navbar">
-    <div class="logo">
-        🚀 <span class="brand">LiteURL</span>
-    </div>
+    <a href="#top" class="logo">
+        <img src="/images/biteu-logo.png" alt="BiteU mascot logo" class="logo-img">
+        <span class="brand">BiteU</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/lakshaybamel" target="_blank" rel="noopener noreferrer" class="nav-github">
+            GitHub ↗
+        </a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 </header>
 
-<main class="hero">
-    <h1>Shrink links. Share faster.</h1>
-    <p>Free URL shortener. No signup. No payment.</p>
+<div class="bite-divider" aria-hidden="true"></div>
 
-    <div class="shortener-box">
-        <input
-                type="text"
-                id="urlInput"
-                placeholder="Paste your long URL here">
 
-        <input
-                type="text"
-                id="aliasInput"
-                placeholder="Custom alias (optional)">
+<!-- Hero Section -->
+<main class="hero" id="top">
 
-        <button type="button" onclick="shortenUrl()">Shorten</button>
+    <div class="hero-text">
+
+        <div class="hero-badge">
+            🦷 Small bite. Big shortcut.
+        </div>
+
+        <h1>
+            Turn long URLs into<br>
+            <span class="hero-highlight">bite-sized</span> links.
+        </h1>
+
+        <p>
+            Paste a link, get a short one back in seconds.
+            No signup, no nonsense — just paste, bite, share.
+        </p>
+
+
+        <!-- URL Shortener -->
+        <div class="shortener-box">
+
+            <div class="input-wrapper">
+                <span class="input-icon">🔗</span>
+
+                <input
+                        type="text"
+                        id="urlInput"
+                        placeholder="Paste your long URL here"
+                        autocomplete="off"
+                >
+            </div>
+
+
+            <div class="alias-row">
+
+                <div class="input-wrapper alias-wrapper">
+                    <span class="input-icon">✏️</span>
+
+                    <input
+                            type="text"
+                            id="aliasInput"
+                            placeholder="Custom alias (optional)"
+                            autocomplete="off"
+                    >
+                </div>
+
+                <button
+                        type="button"
+                        class="shorten-btn"
+                        onclick="shortenUrl()"
+                >
+                    Bite it! 🦷
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Result -->
+        <div id="result" class="result hidden"></div>
+
     </div>
 
-    <div id="result" class="result hidden"></div>
+    <div class="hero-visual" aria-hidden="true">
+        <div class="hero-blob"></div>
+        <img src="/images/biteu-logo.png" alt="" class="hero-mascot">
+    </div>
+
 </main>
 
-<section class="features">
-    <div class="feature">
-        <h3>⚡ Fast</h3>
-        <p>Instant short links with high performance.</p>
+<div class="bite-divider bite-divider--flip" aria-hidden="true"></div>
+
+
+<!-- Features -->
+<section class="features" id="features">
+
+    <p class="section-eyebrow">Why BiteU</p>
+    <h2 class="section-title">Everything a link needs. Nothing it doesn't.</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature">
+            <div class="feature-icon">🦷</div>
+            <h3>Bite-sized links</h3>
+            <p>Long, ugly URLs go in. Short, clean ones come out.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h3>Lightning fast</h3>
+            <p>Your link is ready before you finish reading this sentence.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📱</div>
+            <h3>Scan &amp; share</h3>
+            <p>Every link comes with a QR code, ready to download and share.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🚀</div>
+            <h3>Free, no signup</h3>
+            <p>Skip the forms and the fine print. Just paste and go.</p>
+        </div>
+
     </div>
-    <div class="feature">
-        <h3>📊 Analytics</h3>
-        <p>Track clicks and link performance.</p>
-    </div>
-    <div class="feature">
-        <h3>🆓 Free</h3>
-        <p>No subscriptions. Always free.</p>
-    </div>
+
 </section>
 
-<footer class="footer">
-    <p>
-        © 2026 LiteURL • Built with Spring Boot by
-        <a href="https://github.com/lakshaybamel" target="_blank">Lakshay Bamel</a>
-    </p>
+
+<!-- About -->
+<section class="about" id="about">
+
+    <div class="about-visual">
+        <img src="/images/biteu-poster.png" alt="BiteU brand poster" class="about-poster">
+    </div>
+
+    <div class="about-text">
+        <p class="section-eyebrow section-eyebrow--light">The story</p>
+        <h2>The story behind the bite</h2>
+        <p>
+            BiteU started with a simple annoyance: URLs are too long, and nobody
+            has time to paste, or read, an entire paragraph of link. So BiteU
+            takes a bite out of it — literally.
+        </p>
+        <p>
+            Paste any link and BiteU hands back a short, shareable one in an instant,
+            complete with a scannable QR code. No account, no tracking dashboard,
+            no clutter. Just a small link doing a big job.
+        </p>
+    </div>
+
+</section>
+
+<div class="bite-divider" aria-hidden="true"></div>
+
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+
+    <p class="section-eyebrow">Good to know</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+
+    <div class="faq-list">
+
+        <details class="faq-item" open>
+            <summary>Do I need an account to use BiteU?</summary>
+            <p>Nope. Paste your URL, hit "Bite it!", and your short link is ready. No signup required.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Can I pick my own link name?</summary>
+            <p>Yes. Add anything you like in the custom alias field, and BiteU will use it if it's available.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Can I get a QR code for my link?</summary>
+            <p>Every shortened link comes with a QR code automatically, ready to scan or download as a PNG.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Is BiteU free to use?</summary>
+            <p>Yes, completely. No hidden costs, no premium tier — just paste and go.</p>
+        </details>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Got a long link waiting to be bitten?</h2>
+    <p>It takes less time than reading this sentence.</p>
+    <a href="#top" class="cta-btn">Shorten a link ↑</a>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+
+    <div class="footer-top">
+
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img src="/images/biteu-logo.png" alt="BiteU mascot logo" class="footer-logo-img">
+                <span>BiteU</span>
+            </div>
+            <p class="footer-tagline">Take a bite out of long URLs.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="#top">Home</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="mailto:lakbamel@gmail.com?subject=BiteU%20Feedback">Send feedback</a>
+            <a href="https://github.com/lakshaybamel" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 <strong>BiteU</strong> • Take a bite out of long URLs.</p>
+        <p>
+            Built with Spring Boot by
+            <a
+                    href="https://github.com/lakshaybamel"
+                    target="_blank"
+                    rel="noopener noreferrer"
+            >
+                Lakshay Bamel
+            </a>
+        </p>
+    </div>
+
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="app.js"></script>
+
 </body>
+
 </html>

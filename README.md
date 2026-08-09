@@ -64,7 +64,7 @@ The `~` namespace is automatically added for custom aliases.
 ## 🖼️ Preview
 
 <p align="center">
-  <img src="src/main/resources/static/images/biteu-poster.png" alt="BiteU Preview" width="750">
+  <img src="https://i.ibb.co/wZrZqhbv/preview.png" alt="BiteU Preview" width="750">
 </p>
 
 ---
@@ -291,10 +291,6 @@ You can then copy the link or scan/download its QR code.
 ## 👨‍💻 Author
 
 **Lakshay Bamel**
-MCA — BIT Mesra
-
-- GitHub: [@lakshaybamel](https://github.com/lakshaybamel)
-- LinkedIn: [Lakshay Bamel](https://www.linkedin.com/in/lakshaybamel)
 
 ---
 

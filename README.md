@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="static/images/biteu-logo.png" alt="BiteU Logo" width="110">
+<img src="src/main/resources/static/images/biteu-logo.png" alt="BiteU Logo" width="110">
 
 # 🔗 BiteU.fun — URL Shortener
 
@@ -12,7 +12,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/demo-biteu.fun-purple)](https://biteu.fun)
 
-[🌐 Live Demo](https://biteu.fun) • [💻 GitHub](https://github.com/lakshaybamel/free-url-shortener) • [🐛 Report Bug](https://github.com/lakshaybamel/free-url-shortener/issues) • [✨ Request Feature](https://github.com/lakshaybamel/free-url-shortener/issues)
+[🌐 Live Demo](https://biteu.fun) • [💻 GitHub](https://github.com/lakshaybamel/free-url-shortener)
 
 </div>
 
@@ -27,7 +27,7 @@ The application is deployed on **AWS EC2** behind an **Nginx** reverse proxy wit
 > 🦷 **BiteU** — because it "bites" a long URL down into something small.
 
 <p align="center">
-  <img src="static/images/biteu-preview.png" alt="BiteU Preview" width="850">
+  <img src="https://i.ibb.co/wZrZqhbv/preview.png" alt="BiteU Preview" width="850">
 </p>
 
 ---
